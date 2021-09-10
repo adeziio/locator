@@ -18,22 +18,15 @@ export class MapContainer extends Component {
     }
 
     fetchLocation = async () => {
-        fetch(`https://find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com/iplocation?apikey=${process.env.REACT_APP_FIND_ANY_IP_API_KEY}`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com",
-                "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY
-            }
-        })
-            .then(response => response.json())
-            .then(resData => {
-                this.setState({
-                    latitude: resData.latitude,
-                    longitude: resData.longitude,
-                    isLoading: false,
-                })
+        await navigator.geolocation.getCurrentPosition(
+            position => this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                isLoading: false,
+            }),
+            err => console.log(err)
+        );
 
-            })
     }
 
     render() {
