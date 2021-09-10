@@ -6,8 +6,14 @@ export class MapContainer extends Component {
         super(props);
         this.state = {
             isLoading: true,
-            latitude: 0,
-            longitude: 0,
+            mapData: {
+                latitude: 0,
+                longitude: 0,
+            },
+            markerData: {
+                latitude: 0,
+                longitude: 0,
+            },
         };
     }
 
@@ -19,17 +25,22 @@ export class MapContainer extends Component {
     fetchLocation = async () => {
         await navigator.geolocation.getCurrentPosition(
             position => this.setState({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
+                mapData: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                },
+                markerData: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                },
                 isLoading: false,
             }),
             err => console.log(err)
         );
 
     }
-
     render() {
-        const { isLoading, latitude, longitude } = this.state;
+        const { isLoading, mapData, markerData } = this.state;
         const containerStyle = {
             position: 'relative',
             width: '100%',
@@ -44,19 +55,21 @@ export class MapContainer extends Component {
                             containerStyle={containerStyle}
                             google={this.props.google}
                             initialCenter={{
-                                lat: latitude,
-                                lng: longitude
+                                lat: mapData.latitude,
+                                lng: mapData.longitude
                             }}
                             center={{
-                                lat: latitude,
-                                lng: longitude
+                                lat: mapData.latitude,
+                                lng: mapData.longitude
                             }}
                         >
                             <Marker
+                                title="My Location"
                                 position={{
-                                    lat: latitude,
-                                    lng: longitude
-                                }} />
+                                    lat: markerData.latitude,
+                                    lng: markerData.longitude
+                                }}
+                            />
                         </Map>
                     </div> : null}
 
