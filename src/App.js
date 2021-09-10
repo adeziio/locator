@@ -7,8 +7,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import MyLocation from './components/myLocation/MyLocation';
-import Explore from './components/explore/Explore';
+import MyLocation from './components/myLocation/GoogleMap';
 
 function App() {
   return (
@@ -18,9 +17,6 @@ function App() {
         <Switch>
           <Route path="/myLocation">
             <MyLocation />
-          </Route>
-          <Route path="/explore">
-            <Explore />
           </Route>
           <Route exact path="/" render={() => (<Redirect to="/myLocation" />)} />
           <Route exact path="/*" render={() => (<Redirect to="/myLocation" />)} />

@@ -9,7 +9,7 @@ export default class NavBar extends Component {
         super(props);
         this.state = {
             activeItem: window.location.pathname,
-            paths: ["/myLocation", "/explore"]
+            paths: ["/myLocation"]
         }
     }
 
@@ -50,16 +50,6 @@ export default class NavBar extends Component {
                     onClick={this.handleItemClick}
                 >
                     My Location
-                </Menu.Item>
-
-                <Menu.Item
-                    as={Link}
-                    to='/explore'
-                    name='/explore'
-                    active={activeItem === '/explore'}
-                    onClick={this.handleItemClick}
-                >
-                    Explore
                 </Menu.Item>
             </Menu>
         )
