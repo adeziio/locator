@@ -8,7 +8,6 @@ export class MapContainer extends Component {
             isLoading: true,
             latitude: 0,
             longitude: 0,
-
         };
     }
 
