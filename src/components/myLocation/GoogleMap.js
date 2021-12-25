@@ -39,6 +39,7 @@ export class MapContainer extends Component {
         );
 
     }
+
     render() {
         const { isLoading, mapData, markerData } = this.state;
         const containerStyle = {
