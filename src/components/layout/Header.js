@@ -122,8 +122,8 @@ export default class Header extends Component {
                                         <NearMe sx={{ color: "red", fontSize: "4rem" }} />
                                     </Grid>
                                     <Grid item xs={2}>
-                                        <span style={{ display: "block", marginBottom: "-0.5rem", marginTop: "0.5rem" }}>Text</span>
-                                        <span style={{ display: "block" }}>Analysis</span>
+                                        <span style={{ display: "block", marginBottom: "-0.5rem", marginTop: "0.5rem" }}>My</span>
+                                        <span style={{ display: "block" }}>Locator</span>
                                     </Grid>
                                 </Grid>
                             </Typography>
