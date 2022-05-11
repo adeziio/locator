@@ -8,7 +8,6 @@ export class Search extends Component {
         super(props);
         this.state = {
             delayCounter: 0,
-            isLoading: true,
             mapData: {
                 latitude: 0,
                 longitude: 0,
@@ -61,8 +60,7 @@ export class Search extends Component {
                 markerData: {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
-                },
-                isLoading: false,
+                }
             }),
             err => console.log(err)
         );
@@ -80,8 +78,7 @@ export class Search extends Component {
                     markerData: {
                         latitude: lat,
                         longitude: lng,
-                    },
-                    isLoading: false,
+                    }
                 })
             },
             (error) => {
@@ -92,7 +89,7 @@ export class Search extends Component {
 
 
     render() {
-        const { isLoading, mapData, markerData } = this.state;
+        const { mapData, markerData } = this.state;
         const containerStyle = {
             position: 'relative',
             width: '100%',
@@ -101,30 +98,27 @@ export class Search extends Component {
 
         return (
             <>
-                <TextField label="Search" variant="outlined" fullWidth onChange={this.setSearch} />
-                {!isLoading ?
-                    <Map style={{ position: 'relative', height: '85vh', width: '100vw' }}
-                        containerStyle={containerStyle}
-                        google={this.props.google}
-                        initialCenter={{
-                            lat: mapData.latitude,
-                            lng: mapData.longitude
+                <TextField label="Address" variant="outlined" fullWidth onChange={this.setSearch} />
+                <Map style={{ position: 'relative', height: '85vh', width: '100vw' }}
+                    containerStyle={containerStyle}
+                    google={this.props.google}
+                    initialCenter={{
+                        lat: mapData.latitude,
+                        lng: mapData.longitude
+                    }}
+                    center={{
+                        lat: mapData.latitude,
+                        lng: mapData.longitude
+                    }}
+                >
+                    <Marker
+                        title="My Location"
+                        position={{
+                            lat: markerData.latitude,
+                            lng: markerData.longitude
                         }}
-                        center={{
-                            lat: mapData.latitude,
-                            lng: mapData.longitude
-                        }}
-                    >
-                        <Marker
-                            title="My Location"
-                            position={{
-                                lat: markerData.latitude,
-                                lng: markerData.longitude
-                            }}
-                        />
-                    </Map>
-                    : null
-                }
+                    />
+                </Map>
             </>
         )
     }
